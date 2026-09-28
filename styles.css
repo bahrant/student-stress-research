@@ -1,0 +1,626 @@
+/* ============================================================
+   CSS Custom Properties — Light Mode (default)
+   ============================================================ */
+:root {
+  --bg-gradient-start: #6fa8dc;
+  --bg-gradient-mid:   #4a90e2;
+  --bg-gradient-end:   #2c5aa0;
+  --card-bg:           rgba(255, 255, 255, 0.95);
+  --text-primary:      #333;
+  --text-secondary:    #2c3e50;
+  --border-color:      #dee2e6;
+  --input-bg:          #fff;
+  --input-border:      #ced4da;
+  --status-bg:         rgba(74, 144, 226, 0.08);
+  --status-border:     #4a90e2;
+  --upload-border:     #4a90e2;
+  --upload-bg:         rgba(74, 144, 226, 0.04);
+  --upload-hover-bg:   rgba(74, 144, 226, 0.1);
+  --step-label-color:  #4a90e2;
+  --btn-secondary-bg:  #6c757d;
+  --btn-secondary-fg:  #fff;
+  --shadow:            0 20px 60px rgba(0, 0, 0, 0.15);
+  --spinner-color:     #4a90e2;
+}
+
+/* ============================================================
+   Dark Mode Overrides
+   ============================================================ */
+body.dark-mode {
+  --bg-gradient-start: #1a1a2e;
+  --bg-gradient-mid:   #16213e;
+  --bg-gradient-end:   #0f1419;
+  --card-bg:           rgba(30, 30, 40, 0.95);
+  --text-primary:      #e0e0e0;
+  --text-secondary:    #ffffff;
+  --border-color:      #3a3a4a;
+  --input-bg:          #252535;
+  --input-border:      #4a4a6a;
+  --status-bg:         rgba(74, 144, 226, 0.08);
+  --status-border:     #4a90e2;
+  --upload-border:     #4a90e2;
+  --upload-bg:         rgba(74, 144, 226, 0.05);
+  --upload-hover-bg:   rgba(74, 144, 226, 0.12);
+  --step-label-color:  #6ab0f5;
+  --btn-secondary-bg:  #4a4a5a;
+  --btn-secondary-fg:  #e0e0e0;
+  --shadow:            0 20px 60px rgba(0, 0, 0, 0.45);
+  --spinner-color:     #6ab0f5;
+}
+
+/* ============================================================
+   Reset & Base
+   ============================================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  min-height: 100vh;
+  background: linear-gradient(135deg,
+    var(--bg-gradient-start)  0%,
+    var(--bg-gradient-mid)   50%,
+    var(--bg-gradient-end)  100%);
+  color: var(--text-primary);
+  transition: background 0.3s ease, color 0.3s ease;
+  padding: 36px 20px 60px;
+}
+
+/* ============================================================
+   Layout
+   ============================================================ */
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* ============================================================
+   Header
+   ============================================================ */
+header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 32px;
+}
+
+.header-content h1 {
+  font-size: 2.6rem;
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  line-height: 1.1;
+}
+
+.header-content p {
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 1rem;
+  margin-top: 8px;
+}
+
+#themeToggle {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.18);
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  border-radius: 50px;
+  padding: 8px 18px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  color: #fff;
+  transition: background 0.3s ease, border-color 0.3s ease;
+  white-space: nowrap;
+}
+
+#themeToggle:hover {
+  background: rgba(255, 255, 255, 0.28);
+  border-color: rgba(255, 255, 255, 0.55);
+}
+
+/* ============================================================
+   Main Card
+   ============================================================ */
+main {
+  background: var(--card-bg);
+  border-radius: 16px;
+  padding: 40px;
+  box-shadow: var(--shadow);
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* ============================================================
+   Section Headings
+   ============================================================ */
+.upload-section h2,
+.filter-section h2 {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--step-label-color);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 18px;
+  transition: color 0.3s ease;
+}
+
+/* Divider */
+.upload-section {
+  padding-bottom: 36px;
+  margin-bottom: 36px;
+  border-bottom: 1px solid var(--border-color);
+  transition: border-color 0.3s ease;
+}
+
+/* ============================================================
+   Upload Drop Zone
+   ============================================================ */
+#uploadArea {
+  border: 2px dashed var(--upload-border);
+  border-radius: 12px;
+  padding: 52px 30px;
+  text-align: center;
+  cursor: pointer;
+  background: var(--upload-bg);
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+#uploadArea:hover {
+  background: var(--upload-hover-bg);
+}
+
+#uploadArea.dragover {
+  background: rgba(74, 144, 226, 0.18);
+  border-color: #2c7be5;
+  border-style: solid;
+}
+
+#uploadArea .upload-icon {
+  font-size: 3rem;
+  margin-bottom: 14px;
+  line-height: 1;
+}
+
+#uploadArea > p {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  margin-bottom: 18px;
+  transition: color 0.3s ease;
+}
+
+#browseBtn {
+  background: linear-gradient(135deg, #4a90e2, #2c5aa0);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 26px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+#browseBtn:hover {
+  opacity: 0.88;
+}
+
+/* File-selected state */
+#uploadArea.file-selected {
+  border-style: solid;
+  border-color: #28a745;
+  background: rgba(40, 167, 69, 0.04);
+  cursor: default;
+}
+
+.file-selected-icon {
+  font-size: 2.6rem;
+  margin-bottom: 10px;
+  line-height: 1;
+}
+
+.file-selected-name {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 4px;
+  word-break: break-all;
+  transition: color 0.3s ease;
+}
+
+.file-selected-size {
+  color: #888;
+  font-size: 0.88rem;
+  margin-bottom: 16px;
+}
+
+.btn-secondary {
+  background: var(--btn-secondary-bg);
+  color: var(--btn-secondary-fg);
+  border: none;
+  border-radius: 8px;
+  padding: 8px 20px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: opacity 0.2s ease, background 0.3s ease, color 0.3s ease;
+}
+
+.btn-secondary:hover {
+  opacity: 0.82;
+}
+
+/* ============================================================
+   Upload Status Bar
+   ============================================================ */
+#uploadStatus {
+  margin-top: 14px;
+  padding: 12px 16px;
+  background: var(--status-bg);
+  border-left: 4px solid var(--status-border);
+  border-radius: 4px;
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+#uploadStatus p {
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ============================================================
+   Error Message
+   ============================================================ */
+.error-message {
+  margin-top: 10px;
+  padding: 10px 14px;
+  background: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+  border-radius: 6px;
+  font-size: 0.88rem;
+  line-height: 1.4;
+}
+
+/* ============================================================
+   Filter Section
+   ============================================================ */
+.filter-section {
+  transition: opacity 0.3s ease;
+}
+
+.filter-section.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* ============================================================
+   Date Inputs
+   ============================================================ */
+.date-inputs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 22px;
+}
+
+.date-field label {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 6px;
+  transition: color 0.3s ease;
+}
+
+.optional-tag {
+  font-weight: 400;
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+  opacity: 0.65;
+}
+
+.date-field input {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid var(--input-border);
+  border-radius: 8px;
+  background: var(--input-bg);
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  transition: background 0.3s ease, color 0.3s ease, border-color 0.2s ease;
+}
+
+.date-field input:focus {
+  outline: none;
+  border-color: #4a90e2;
+  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.15);
+}
+
+/* ============================================================
+   Checkbox Group
+   ============================================================ */
+.checkbox-group {
+  margin-bottom: 24px;
+}
+
+.checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.checkbox-row input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  accent-color: #4a90e2;
+}
+
+.checkbox-row label {
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+/* ============================================================
+   Buttons
+   ============================================================ */
+.button-group {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+#maxRangeBtn {
+  background: var(--btn-secondary-bg);
+  color: var(--btn-secondary-fg);
+  border: none;
+  border-radius: 8px;
+  padding: 11px 22px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: opacity 0.2s ease, background 0.3s ease, color 0.3s ease;
+}
+
+#maxRangeBtn:hover:not(:disabled) {
+  opacity: 0.82;
+}
+
+#maxRangeBtn:disabled,
+#filterBtn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+#filterBtn {
+  background: linear-gradient(135deg, #4a90e2, #2c5aa0);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 11px 28px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+#filterBtn:hover:not(:disabled) {
+  opacity: 0.88;
+}
+
+.help-text {
+  color: #8a8a9a;
+  font-size: 0.84rem;
+  margin-top: 6px;
+  line-height: 1.5;
+}
+
+/* ============================================================
+   Processing Spinner
+   ============================================================ */
+#processingStatus {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 36px 20px;
+  gap: 16px;
+  margin-top: 12px;
+}
+
+#processingStatus p {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+
+.spinner {
+  width: 46px;
+  height: 46px;
+  border: 4px solid rgba(74, 144, 226, 0.2);
+  border-top-color: var(--spinner-color);
+  border-radius: 50%;
+  animation: spin 0.75s linear infinite;
+  transition: border-top-color 0.3s ease;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ============================================================
+   Results Panel
+   ============================================================ */
+#results {
+  margin-top: 28px;
+  padding: 26px 28px;
+  background: rgba(40, 167, 69, 0.06);
+  border: 1px solid rgba(40, 167, 69, 0.28);
+  border-radius: 12px;
+  text-align: center;
+}
+
+#results h3 {
+  font-size: 1.25rem;
+  color: #28a745;
+  margin-bottom: 10px;
+}
+
+#results p {
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  margin-bottom: 20px;
+  line-height: 1.6;
+  transition: color 0.3s ease;
+}
+
+#downloadBtn {
+  background: linear-gradient(135deg, #28a745, #1e7e34);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 36px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+#downloadBtn:hover {
+  opacity: 0.88;
+}
+
+/* ============================================================
+   Flatpickr — Data-dot indicator
+   ============================================================ */
+.flatpickr-day.has-data {
+  position: relative;
+}
+
+.flatpickr-day.has-data::after {
+  content: '';
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 5px;
+  height: 5px;
+  background-color: #4a90e2;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* ============================================================
+   Flatpickr — Dark mode overrides
+   ============================================================ */
+body.dark-mode .flatpickr-calendar {
+  background: #1e1e2e;
+  border-color: #3a3a5a;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+body.dark-mode .flatpickr-calendar.arrowBottom::before,
+body.dark-mode .flatpickr-calendar.arrowBottom::after {
+  border-top-color: #1e1e2e;
+}
+
+body.dark-mode .flatpickr-calendar.arrowTop::before,
+body.dark-mode .flatpickr-calendar.arrowTop::after {
+  border-bottom-color: #1e1e2e;
+}
+
+body.dark-mode .flatpickr-months .flatpickr-month,
+body.dark-mode .flatpickr-weekdays,
+body.dark-mode span.flatpickr-weekday {
+  background: #252535;
+  color: #e0e0e0;
+  fill: #e0e0e0;
+}
+
+body.dark-mode .flatpickr-current-month .flatpickr-monthDropdown-months,
+body.dark-mode .flatpickr-current-month input.cur-year {
+  color: #e0e0e0;
+}
+
+body.dark-mode .flatpickr-day {
+  color: #e0e0e0;
+}
+
+body.dark-mode .flatpickr-day:hover,
+body.dark-mode .flatpickr-day:focus {
+  background: #3a3a5a;
+  border-color: #3a3a5a;
+}
+
+body.dark-mode .flatpickr-day.today {
+  border-color: #4a90e2;
+}
+
+body.dark-mode .flatpickr-day.selected,
+body.dark-mode .flatpickr-day.selected:hover {
+  background: #4a90e2;
+  border-color: #4a90e2;
+  color: #fff;
+}
+
+body.dark-mode .flatpickr-day.flatpickr-disabled,
+body.dark-mode .flatpickr-day.flatpickr-disabled:hover,
+body.dark-mode .flatpickr-day.prevMonthDay,
+body.dark-mode .flatpickr-day.nextMonthDay {
+  color: #555570;
+}
+
+body.dark-mode .numInputWrapper:hover,
+body.dark-mode .flatpickr-current-month .flatpickr-monthDropdown-months:hover {
+  background: #3a3a5a;
+}
+
+body.dark-mode .flatpickr-prev-month,
+body.dark-mode .flatpickr-next-month {
+  fill: #e0e0e0;
+}
+
+body.dark-mode .flatpickr-prev-month:hover svg,
+body.dark-mode .flatpickr-next-month:hover svg {
+  fill: #6ab0f5;
+}
+
+/* ============================================================
+   Responsive — 768px
+   ============================================================ */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 15px;
+  }
+
+  main {
+    padding: 25px 20px;
+  }
+
+  .date-inputs {
+    grid-template-columns: 1fr;
+  }
+
+  .header-content h1 {
+    font-size: 2rem;
+  }
+
+  #uploadArea {
+    padding: 36px 18px;
+  }
+
+  .button-group {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  #maxRangeBtn,
+  #filterBtn {
+    width: 100%;
+    text-align: center;
+  }
+}

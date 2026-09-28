@@ -1,0 +1,25 @@
+ do the following: 
+
+
+
+The high-level goal here is to ingest the .fit files, convert them cleanly to .csv's where the timestamps are properly maintained, to then combine the csv's into a single one and remove all the columns that aren't time/date, heart rate, and stress score. Remove intermediary steps that don't directly support the application's facilitation of these steps 
+
+
+
+I want you to re-engineer the web application within FitConverter to fix the following problem:  
+
+- script.JS is called & ran instead of fit_processor.cpp where simulated data is being generated 
+
+
+Additionally, I want you to audit the state of the application, and any potential errors/bugs that can happen between each step taken
+
+
+
+
+Generally, this app was developed by instructing a fellow developer to do the following: 
+
+1. let me drop the  84d7fe25-7214-4709-b518-0c3003d1503e_1 folder onto a highlighted section within the page
+
+2. The application will search and manually extract the FIT files witihn 84d7fe25-7214-4709-b518-0c3003d1503e_1/DI_CONNECT/DI-Connect-Uploaded-Files/UploadedFiles_0-_Part1.zip and convert them into a .csv 
+
+3. use the aggregate_fit_data.py to assemble them together 

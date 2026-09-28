@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FitConverter</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+
+    <header>
+      <div class="header-content">
+        <h1>FitConverter</h1>
+        <p>Convert FIT files to CSV format with stress and heart rate data</p>
+      </div>
+      <button id="themeToggle" aria-label="Toggle dark mode">
+        <span class="theme-icon">🌙</span>
+      </button>
+    </header>
+
+    <main>
+
+      <!-- Step 1: Upload -->
+      <section class="upload-section">
+        <h2>Step 1 — Upload</h2>
+        <div id="uploadArea">
+          <div class="upload-icon">📁</div>
+          <p>Drop your ZIP file here or click to browse</p>
+          <input type="file" id="fileInput" accept=".zip" hidden>
+          <button id="browseBtn">Browse Files</button>
+        </div>
+        <div id="uploadStatus">
+          <p>Upload a <strong>.zip</strong> file containing your Garmin FIT activity files.</p>
+        </div>
+      </section>
+
+      <!-- Step 2: Date Filter -->
+      <section id="filterSection" class="filter-section disabled">
+        <h2>Step 2 — Filter by Date</h2>
+
+        <div class="date-inputs">
+          <div class="date-field">
+            <label for="lastName">Last Name <span class="optional-tag">(optional)</span></label>
+            <input type="text" id="lastName" placeholder="Enter last name">
+          </div>
+          <div class="date-field">
+            <label for="watchId">Watch ID <span class="optional-tag">(optional)</span></label>
+            <input type="text" id="watchId" placeholder="Enter Watch ID">
+          </div>
+        </div>
+
+        <div class="date-inputs">
+          <div class="date-field">
+            <label for="studentId">Student ID — last 4 digits <span class="optional-tag">(optional)</span></label>
+            <input type="text" id="studentId" placeholder="e.g. 4821" maxlength="4" inputmode="numeric">
+          </div>
+          <div class="date-field">
+            <label for="study">Study <span class="optional-tag">(optional)</span></label>
+            <input type="text" id="study" placeholder="Enter study name">
+          </div>
+        </div>
+        <p class="help-text">User Id (Subject column) is built from Last Name and the last 4 digits of the Student ID. All four fields are optional.</p>
+
+        <div class="date-inputs">
+          <div class="date-field">
+            <label for="startDate">Start Date</label>
+            <input type="text" id="startDate" placeholder="Select start date" readonly>
+          </div>
+          <div class="date-field">
+            <label for="endDate">End Date</label>
+            <input type="text" id="endDate" placeholder="Select end date" readonly>
+          </div>
+        </div>
+
+        <div class="checkbox-group">
+          <div class="checkbox-row">
+            <input type="checkbox" id="excludeNonWaking" checked>
+            <label for="excludeNonWaking">Exclude non-waking hours (11pm - 6am)</label>
+          </div>
+          <p class="help-text">Omit data from 11:00 PM to 6:00 AM from the CSV output</p>
+          <div class="checkbox-row">
+            <input type="checkbox" id="omitMissingData">
+            <label for="omitMissingData">Omit Missing Data</label>
+          </div>
+          <p class="help-text">Remove entries where Heart Rate is blank and Stress Level is blank or negative</p>
+          <div class="checkbox-row">
+            <input type="checkbox" id="omitMissingStress">
+            <label for="omitMissingStress">Omit Missing Stress</label>
+          </div>
+          <p class="help-text">Remove entries where Stress Level is blank or &le; 1</p>
+        </div>
+
+        <div class="button-group">
+          <button id="maxRangeBtn" disabled>Set max date range</button>
+          <button id="filterBtn" disabled>Return filtered .csv</button>
+        </div>
+        <p class="help-text">Dates are auto-filled to the full range of your data. Adjust as needed, then click 'Return filtered .csv'.</p>
+      </section>
+
+      <!-- Processing Spinner -->
+      <div id="processingStatus" style="display:none;">
+        <div class="spinner"></div>
+        <p>Processing FIT files...</p>
+      </div>
+
+      <!-- Results -->
+      <div id="results" style="display:none;">
+        <h3>Processing Complete</h3>
+        <p id="resultsText"></p>
+        <button id="downloadBtn">Download CSV</button>
+      </div>
+
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script src="script.js"></script>
+</body>
+</html>
